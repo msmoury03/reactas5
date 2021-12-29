@@ -67,7 +67,7 @@ const Student = () => {
                 <TableCell align="right">{row.Age}</TableCell>
                 <TableCell align="right">{row.Course}</TableCell>
                 <TableCell align="right">{row.Batch}</TableCell>
-                <TableCell align="right"><i class="fas fa-edit" onClick={() => { navigte(`/student/update/${row.Id}`) }}></i>
+                <TableCell align="right"><i class="fas fa-edit" onClick={() => { navigte(`/student/des/${row.Id}`) }}></i>
                 <i style={{marginLeft:"15px"}} class="fas fa-trash-alt" onClick={()=>{studatadelete(row.Id)}}></i></TableCell>
                 
 

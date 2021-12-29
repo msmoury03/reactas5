@@ -32,10 +32,10 @@ function App() {
               <Route path=':id' element={<Addstudent />} />
 
             </Route>
-            <Route path='/student/update' element={<Update />}>
+            {/* <Route path='/student/update' element={<Update />}>
               <Route path=':id' element={<Update />} />
 
-            </Route>
+            </Route> */}
 
 
           </Routes>

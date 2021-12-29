@@ -1,51 +1,72 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { Contextapi } from './Context';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
+
 
 
 
 const Addstudent = () => {
 
-    const [student,setstudent] = useContext(Contextapi);
+    const [student, setstudent] = useContext(Contextapi);
     const navigte = useNavigate();
-   
 
+    const { id } = useParams();
     const [dataa, setdataa] = useState({
-        Id:"",
+        Id: "",
         Name: "",
         Age: "",
         Course: "",
-        Batch:""
+        Batch: ""
     })
-   
+
+    const { Name, Age, Course, Batch } = dataa
+
+    useEffect(() => {
+        loaduserdata();
+
+    }, [])
+
+    const loaduserdata = async () => {
+
+        const amy = await student.filter((vii) => vii.Id === id)
+        amy.map((val) => setdataa(val))
+
+    }
 
 
-    const onhdlechng = (e)=>{
+
+    const onhdlechng = (e) => {
         const name = e.target.id
         const value = e.target.value
-        setdataa({...dataa,[name]:value})
-        
+        setdataa({ ...dataa, [name]: value })
+
     }
 
-
-
-    const btnsub = (e)=>{
+    const btnsub = (e) => {
         e.preventDefault();
-        const newdata = {...dataa, Id:`${student.length+1}`}
-        setstudent([...student,newdata])
-        
-        navigte('/student')
+        if (!id == "") {
+            setstudent((prev) => prev.map((std) => (std.Id === id) ?
+                {
+                    "Id": id,
+                    "Name": Name,
+                    "Age": Age,
+                    "Course": Course,
+                    "Batch": Batch
+                } : std
 
-        
-        
-        
-        
-        
-    
+            ))
+        } else {
+            const newdata = { ...dataa, Id: `${student.length + 1}` }
+            setstudent([...student, newdata])
+        }
+        navigte('/student')
     }
+
+
 
 
     return (
@@ -62,12 +83,12 @@ const Addstudent = () => {
             </div>
 
             <div className='d-flex justify-content-end mx-5'>
-                
-                
+
+
                 <Link to='/student'><Button className='mx-4' variant="outlined">Cancel</Button></Link>
-                
+
                 <Button className='mx-3' variant="contained" onClick={btnsub}>Submit</Button>
-                
+
             </div>
 
 
