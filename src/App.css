@@ -1,3 +1,8 @@
+body{
+  background: -webkit-gradient(linear,left top,left bottom,from(#72dee2),to(#882ba0)) fixed;
+}
+
+
 .App {
   text-align: center;
 }
@@ -35,4 +40,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+i{
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
 }

@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Header from './Components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Student from './Components/Student';
+import Contact from './Components/Contact';
+import { Condata } from './Components/Context';
+import Addstudent from './Components/Addstudent';
+import Home from './Components/Home';
+import Update from './Components/Update';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+
+    <Condata>
+
+      <Router>
+        <div className="App">
+          <Header />
+
+          <Routes>
+
+            <Route path='' element={<Home />} />
+            <Route path='/student' element={<Student />}/>
+            <Route path='*' element={<Home/>}/>
+            
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/student/des' element={<Addstudent />}>
+              <Route path=':id' element={<Addstudent />} />
+
+            </Route>
+            <Route path='/student/update' element={<Update />}>
+              <Route path=':id' element={<Update />} />
+
+            </Route>
+
+
+          </Routes>
+
+
+
+
+
+        </div>
+      </Router>
+    </Condata>
   );
 }
 
